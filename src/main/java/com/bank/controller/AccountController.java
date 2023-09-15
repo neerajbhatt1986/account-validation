@@ -13,8 +13,12 @@ import java.util.Map;
 @RestController
 public class AccountController {
 
-    @Autowired
-    AccountValidationService validationService;
+    private final AccountValidationService validationService;
+
+    public AccountController(AccountValidationService validationService) {
+        this.validationService = validationService;
+    }
+
     @PostMapping("validate/account")
     public AccountValidationResponse validateAccount(@Valid @RequestBody AccountValidationRequest request){
         return validationService.validateAccount(request);

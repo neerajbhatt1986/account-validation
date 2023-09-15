@@ -20,15 +20,16 @@ import java.util.stream.Collectors;
 @Service
 public class AccountValidationService {
 
-    Logger logger = LoggerFactory.getLogger(AccountValidationService.class);
-    @Autowired
+    private final Logger logger = LoggerFactory.getLogger(AccountValidationService.class);
+
     ProviderConfiguration providerConfiguration;
-
-    @Autowired
     ProviderService providerService;
-
-    @Autowired
     ExecutorService executorService;
+    public AccountValidationService(ProviderConfiguration providerConfiguration, ProviderService providerService, ExecutorService executorService) {
+        this.providerConfiguration = providerConfiguration;
+        this.providerService = providerService;
+        this.executorService = executorService;
+    }
 
     public AccountValidationResponse validateAccount(AccountValidationRequest request){
 
